@@ -1,4 +1,4 @@
-#  ChatGPT Instagram Idea Generator & Analytics Dashboard
+# ChatGPT Instagram Idea Generator & Analytics Dashboard
 
 This project is a full-stack MERN application that simulates a content creation tool for Instagram influencers and creators. It includes a **ChatGPT-powered Content Idea Generator** and a **Simulated Instagram Analytics Dashboard**.
 
@@ -30,12 +30,12 @@ This project is a full-stack MERN application that simulates a content creation 
 
 ##  Tech Stack
 
-| Layer       | Tech                  |
-|-------------|-----------------------|
-| Frontend    | React.js, Bootstrap   |
-| Backend     | Node.js, Express.js   |
-| Database    | MongoDB Atlas         |
-| AI Service  | OpenAI GPT-3.5 Turbo  |
+| Layer       | Tech                      |
+|-------------|---------------------------|
+| Frontend    | React.js, Bootstrap       |
+| Backend     | Node.js, Express.js       |
+| Database    | MongoDB Atlas             |
+| AI Service  | OpenAI GPT-3.5 Turbo      |
 | Charts      | Chart.js, react-chartjs-2 |
 
 ---
@@ -43,5 +43,7 @@ This project is a full-stack MERN application that simulates a content creation 
 ##  Getting Started
 
 ### 1. Clone the Repository
-```bash
 
+```bash
+git clone https://github.com/ayesh03/instagram-chatgpt-app.git
+cd instagram-chatgpt-app
