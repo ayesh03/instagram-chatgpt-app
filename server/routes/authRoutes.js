@@ -10,16 +10,23 @@ const JWT_SECRET = process.env.JWT_SECRET || "secretkey"; // Keep this secret in
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
   try {
+    console.log("Registering user:", username); // 🔍 Log
     const existing = await User.findOne({ username });
-    if (existing) return res.status(400).json({ error: "User already exists" });
+    if (existing) {
+      console.log("User already exists:", username); // 🔍 Log
+      return res.status(400).json({ error: "User already exists" });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, password: hashedPassword });
+    console.log("User created:", user); // 🔍 Log
     res.status(201).json({ message: "Registered successfully", user: user.username });
   } catch (err) {
-    res.status(500).json({ error: "Registration failed" });
+    console.error("Registration error:", err); // 🔥 Print full error
+    res.status(500).json({ error: "Registration failed", details: err.message });
   }
 });
+
 
 // User Login
 router.post("/login", async (req, res) => {

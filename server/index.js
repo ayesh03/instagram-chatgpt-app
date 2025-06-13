@@ -8,7 +8,11 @@ const app = express();
 
 connectDB(); 
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5000", "https://instagram-chatgpt-app.vercel.app"], 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
