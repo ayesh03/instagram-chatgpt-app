@@ -1,30 +1,29 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = ({ onLogin, onSwitchToRegister }) => {
+const Register = ({ onSwitchToLogin, onRegisterSuccess }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const loginHandler = async (e) => {
+  const registerHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/login`, {
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/register`, {
         username,
         password,
       });
-      localStorage.setItem("token", res.data.token);
-      onLogin(res.data.user); // Pass user to parent
+      onSwitchToLogin(); // Go back to login on success
     } catch (err) {
-      setError("Invalid username or password");
+      setError("Registration failed. Try another username.");
     }
   };
 
   return (
     <div className="container mt-5">
-      <h2>Login</h2>
+      <h2>Register</h2>
       {error && <p className="text-danger">{error}</p>}
-      <form onSubmit={loginHandler}>
+      <form onSubmit={registerHandler}>
         <div className="mb-3">
           <input
             type="text"
@@ -45,16 +44,16 @@ const Login = ({ onLogin, onSwitchToRegister }) => {
             required
           />
         </div>
-        <button className="btn btn-primary">Login</button>
+        <button className="btn btn-primary">Register</button>
       </form>
       <p className="mt-3">
-        Don't have an account?{" "}
-        <button className="btn btn-link p-0" onClick={onSwitchToRegister}>
-          Register here
+        Already have an account?{" "}
+        <button className="btn btn-link p-0" onClick={onSwitchToLogin}>
+          Login here
         </button>
       </p>
     </div>
   );
 };
 
-export default Login;
+export default Register;
